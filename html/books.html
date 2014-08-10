@@ -68,7 +68,7 @@
             </tr>
             <tr ng-repeat = "book in books | filter:bookNameFilter">
                 <td>{{book.name}}</td>
-                <td>{{book.borrower.name}}</td>
+                <td>{{book.borrower.firstName}} {{book.borrower.lastName}}</td>
                 <td ng-show = "isBorrowed(book)">
                     <a class="btn btn-link" ng-click = "bookReturn(book)">Return</a>
                 </td>
