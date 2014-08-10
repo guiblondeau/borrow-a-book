@@ -3,6 +3,7 @@
     border: 1px solid #f85032;
     border-radius: 4px;
     height: 170px;
+    margin-top:10px;
     padding-right: 0px;
     background: #f85032; /* Old browsers */
     background-color: -moz-linear-gradient(top,  #f85032 0%, #f48677 0%, #f16f5c 57%, #f16f5c 57%, #f85032 78%, #f02f17 96%, #f02f17 100%, #f48677 100%, #e73827 100%); /* FF3.6+ */
@@ -20,6 +21,7 @@
     border: 1px solid #9dd53a;
     border-radius: 4px;
     height: 170px;
+    margin-top:10px;
     padding-right: 0px;
     background: #9dd53a; /* Old browsers */
     background: -moz-linear-gradient(top,  #9dd53a 0%, #a1d54f 55%, #80c217 100%, #7cbc0a 100%); /* FF3.6+ */
