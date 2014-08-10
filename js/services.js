@@ -26,15 +26,15 @@ booksService.factory('usersService', ['$http', function($http){
 
     return {
         getUsers : function(success, failure) {
-            return $http.get('../users/').success(success, failure);
+            return $http.get('../persons/').success(success, failure);
         },
 
         createUser : function(user, success, failure) {
-            return $http.post('../users/', user).success(success, failure);
+            return $http.post('../persons/', user).success(success, failure);
         },
 
         deleteUser : function(user, success, failure) {
-            return $http.delete('../users/'+user.id).success(success, failure);
+            return $http.delete('../persons/'+user.id).success(success, failure);
         }
     }
 }]);
