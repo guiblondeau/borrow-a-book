@@ -1,7 +1,7 @@
 .borrowed-book {
     min-height: 20px;
     padding: 19px;
-    margin-bottom: 20px;
+    margin: 20px 20px 20px 20px;
     border: 1px solid #f85032;
     border-radius: 4px;
     background: #f85032; /* Old browsers */
@@ -18,7 +18,7 @@
 .free-book {
     min-height: 20px;
     padding: 19px;
-    margin-bottom: 20px;
+    margin: 20px 20px 20px 20px;
     border: 1px solid #9dd53a;
     border-radius: 4px;
     background: #9dd53a; /* Old browsers */
