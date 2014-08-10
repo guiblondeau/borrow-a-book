@@ -62,8 +62,8 @@
 
     </div>
         <div ng-repeat = "book in books | filter:bookNameFilter">
-            <div ng-class="{true: 'borrowed-book', false: 'free-book'}[isBorrowed(book)]"
-                 class = "col-md-3 col-lg-6 col-sm-12 col-xs-12 well">
+            <div class = "col-md-3 col-lg-6 col-sm-12 col-xs-12 well"
+                    ng-class="{true: 'borrowed-book', false: 'free-book'}[isBorrowed(book)]">
                 <h3>{{book.name}}</h3>
                 <br/>
 
