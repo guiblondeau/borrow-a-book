@@ -3,7 +3,7 @@
     border: 1px solid #f85032;
     border-radius: 4px;
     height: 200px;
-    padding: 0px;
+    padding-right: 0px;
     background: #f85032; /* Old browsers */
     background-color: -moz-linear-gradient(top,  #f85032 0%, #f48677 0%, #f16f5c 57%, #f16f5c 57%, #f85032 78%, #f02f17 96%, #f02f17 100%, #f48677 100%, #e73827 100%); /* FF3.6+ */
     background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f85032), color-stop(0%,#f48677), color-stop(57%,#f16f5c), color-stop(57%,#f16f5c), color-stop(78%,#f85032), color-stop(96%,#f02f17), color-stop(100%,#f02f17), color-stop(100%,#f48677), color-stop(100%,#e73827)); /* Chrome,Safari4+ */
@@ -20,7 +20,7 @@
     border: 1px solid #9dd53a;
     border-radius: 4px;
     height: 200px;
-    padding: 0px;
+    padding-right: 0px;
     background: #9dd53a; /* Old browsers */
     background: -moz-linear-gradient(top,  #9dd53a 0%, #a1d54f 55%, #80c217 100%, #7cbc0a 100%); /* FF3.6+ */
     background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#9dd53a), color-stop(55%,#a1d54f), color-stop(100%,#80c217), color-stop(100%,#7cbc0a)); /* Chrome,Safari4+ */
