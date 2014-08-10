@@ -67,10 +67,10 @@
                 <h3>{{book.name}}</h3>
                 <br/>
                 <div>
-                    <strong>Owner</strong> : {{book.owner.firstName}} {{book.owner.firstName}}
+                    <strong>Owner</strong> : {{book.owner.firstName}} {{book.owner.lastName}}
                 </div>
                 <div ng-show = "isBorrowed(book)">
-                    <strong>Borrower</strong> : {{book.borrower.firstName}} {{book.borrower.firstName}}
+                    <strong>Borrower</strong> : {{book.borrower.firstName}} {{book.borrower.lastName}}
                 </div>
             </div>
         </div>
@@ -80,7 +80,7 @@
                 <th style = "text-align : center">Name</th>
                 <th style = "text-align : center">Borrower</th>
                 <th style = "text-align : center">Owner</th>
-                <th style = "text-align : center">Edit</th>
+                <th style = "text-align : center">Edit</t   h>
                 <th style = "text-align : center">Delete</th>
             </tr>
             <tr ng-repeat = "book in books | filter:bookNameFilter">
