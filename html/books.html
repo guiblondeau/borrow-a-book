@@ -65,6 +65,9 @@
             <div class = "col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
             <div class = "col-md-4 col-lg-4 col-sm-10 col-xs-10"
                     ng-class="{'borrowed-book': isBorrowed(book), 'free-book': !isBorrowed(book)}">
+                <a class="btn btn-link close" ng-click = "delete(book)">
+                    <span class="glyphicon glyphicon-remove"></span>
+                </a>
                 <h3>{{book.name}}</h3>
                 <br/>
                 <div>
@@ -74,6 +77,12 @@
                     <strong>Borrower</strong> : {{book.borrower.firstName}} {{book.borrower.lastName}}
                 </div>
             </div>
+            <div ng-show = "isBorrowed(book)">
+                <a class="btn" ng-click = "bookReturn(book)">Return</a>
+            </div>
+            <div ng-hide = "isBorrowed(book)">
+                <a class="btn" ng-click = "bookBorrow(book)">Borrow</a>
+            </div>
             <div class = "col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
         </div>
     <div>
@@ -82,7 +91,7 @@
                 <th style = "text-align : center">Name</th>
                 <th style = "text-align : center">Borrower</th>
                 <th style = "text-align : center">Owner</th>
-                <th style = "text-align : center">Edit</t   h>
+                <th style = "text-align : center">Edit</th>
                 <th style = "text-align : center">Delete</th>
             </tr>
             <tr ng-repeat = "book in books | filter:bookNameFilter">
