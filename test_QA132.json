@@ -1,0 +1,344 @@
+{
+  "front-version": "2.8.0",
+  "version": 3,
+  "nodes": [
+    {
+      "type": "Project",
+      "id": "8cfed7c5-6044-4a8d-97c9-91079a0b96bc",
+      "lastModified": "2017-08-08T16:37:03.433+02:00",
+      "name": "test-QA132",
+      "remoteModification": "2017-08-08T14:37:03.311Z"
+    },
+    {
+      "type": "Scenario",
+      "id": "cbc1104d-bd88-4faa-b472-27adbc16150b",
+      "lastModified": "2017-08-08T16:36:23.114+02:00",
+      "name": "Quickstart",
+      "requestOrder": [
+        "post_qsw",
+        "get_company",
+        "get_company_xml",
+        "delete_company",
+        "get_deleted_company"
+      ],
+      "parentId": "8cfed7c5-6044-4a8d-97c9-91079a0b96bc"
+    },
+    {
+      "type": "Request",
+      "method": {
+        "requestBody": true,
+        "link": "http://tools.ietf.org/html/rfc7231#section-4.3.3",
+        "name": "POST"
+      },
+      "body": {
+        "formBody": {
+          "overrideContentType": true,
+          "encoding": "application/x-www-form-urlencoded"
+        },
+        "bodyType": "Text",
+        "autoSetLength": true,
+        "textBody": "{\n\"name\" : \"Restlet\",\n\"tags\" : [ \"APIs\", \"DevOps\" ],\n\"address\" : {\n\"street\" : \"6, Rue Rose Dieng-Kuntz\",\n\"zipcode\" : \"44300\",\n\"city\" : \"Nantes\"\n}\n}"
+      },
+      "headersType": "Form",
+      "uri": {
+        "query": {
+          "delimiter": "&",
+          "items": []
+        },
+        "scheme": {
+          "secure": true,
+          "name": "https",
+          "version": "V11"
+        },
+        "host": "qswdonotremove.apispark.net",
+        "path": "/v1/companies/"
+      },
+      "id": "52cb73a7-9592-46f8-985f-d63a38b8ffaa",
+      "lastModified": "2017-08-08T16:04:22.998+02:00",
+      "name": "post_qsw",
+      "headers": [
+        {
+          "enabled": true,
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "enabled": true,
+          "name": "Authorization",
+          "value": "Basic NTk5ZGYzNmYtYWJhNC00MTA0LWE1YWEtMDgzOGM5YWE0N2U1OmM1MzdhYjZjLTU3N2ItNDNlOS04M2E1LWQ1NzNlOTU2MTdhZQ=="
+        }
+      ],
+      "assertions": [
+        {
+          "comparison": "Equals",
+          "subject": "ResponseStatus",
+          "path": "code",
+          "value": "200"
+        },
+        {
+          "comparison": "Exists",
+          "subject": "ResponseJsonBody",
+          "path": "$.id",
+          "value": "0"
+        }
+      ],
+      "metaInfo": {
+        "ownerId": "auth0|5989bd72a8c3ee36d7da28e8"
+      },
+      "parentId": "cbc1104d-bd88-4faa-b472-27adbc16150b"
+    },
+    {
+      "type": "Request",
+      "method": {
+        "link": "http://tools.ietf.org/html/rfc7231#section-4.3.1",
+        "name": "GET"
+      },
+      "body": {
+        "formBody": {
+          "overrideContentType": true,
+          "encoding": "application/x-www-form-urlencoded"
+        },
+        "bodyType": "Text",
+        "autoSetLength": true
+      },
+      "headersType": "Form",
+      "uri": {
+        "query": {
+          "delimiter": "&",
+          "items": []
+        },
+        "scheme": {
+          "secure": true,
+          "name": "https",
+          "version": "V11"
+        },
+        "host": "qswdonotremove.apispark.net",
+        "path": "/v1/companies/${\"test-QA132\".\"Quickstart\".\"post_qsw\".\"response\".\"body\".\"id\"}"
+      },
+      "description": "",
+      "id": "527150f7-ff1b-47e7-ae2f-79c202ef0c72",
+      "lastModified": "2017-08-08T16:07:14.920+02:00",
+      "name": "get_company",
+      "headers": [
+        {
+          "enabled": true,
+          "name": "Authorization",
+          "value": "Basic NTk5ZGYzNmYtYWJhNC00MTA0LWE1YWEtMDgzOGM5YWE0N2U1OmM1MzdhYjZjLTU3N2ItNDNlOS04M2E1LWQ1NzNlOTU2MTdhZQ=="
+        }
+      ],
+      "assertions": [
+        {
+          "comparison": "Equals",
+          "subject": "ResponseJsonBody",
+          "path": "$.name",
+          "value": "Restlet"
+        },
+        {
+          "comparison": "Contains",
+          "subject": "ResponseJsonBody",
+          "path": "$.tags",
+          "value": "APIs"
+        }
+      ],
+      "metaInfo": {
+        "ownerId": "auth0|5989bd72a8c3ee36d7da28e8"
+      },
+      "parentId": "cbc1104d-bd88-4faa-b472-27adbc16150b"
+    },
+    {
+      "type": "Request",
+      "method": {
+        "link": "http://tools.ietf.org/html/rfc7231#section-4.3.1",
+        "name": "GET"
+      },
+      "body": {
+        "formBody": {
+          "overrideContentType": true,
+          "encoding": "application/x-www-form-urlencoded"
+        },
+        "bodyType": "Text",
+        "autoSetLength": true
+      },
+      "headersType": "Form",
+      "uri": {
+        "query": {
+          "delimiter": "&",
+          "items": []
+        },
+        "scheme": {
+          "secure": true,
+          "name": "https",
+          "version": "V11"
+        },
+        "host": "qswdonotremove.apispark.net",
+        "path": "/v1/companies/${\"test-QA132\".\"Quickstart\".\"post_qsw\".\"response\".\"body\".\"id\"}"
+      },
+      "description": "",
+      "id": "987a3585-12dc-4c5e-a03a-913c33a43ffa",
+      "lastModified": "2017-08-08T16:34:23.074+02:00",
+      "name": "get_company_xml",
+      "headers": [
+        {
+          "enabled": true,
+          "name": "Authorization",
+          "value": "${\"test-QA132\".\"Quickstart\".\"get_company\".\"request\".\"headers\".\"authorization\"}"
+        },
+        {
+          "enabled": true,
+          "name": "Accept",
+          "value": "text/xml"
+        },
+        {
+          "enabled": true,
+          "name": "toto",
+          "value": ""
+        }
+      ],
+      "assertions": [
+        {
+          "comparison": "Equals",
+          "subject": "ResponseXmlBody",
+          "path": "count(/Company/tags)",
+          "value": "1"
+        },
+        {
+          "comparison": "Equals",
+          "subject": "ResponseXmlBody",
+          "path": "count(/Company/tags/*)",
+          "value": "2"
+        }
+      ],
+      "metaInfo": {
+        "ownerId": "auth0|5989bd72a8c3ee36d7da28e8"
+      },
+      "parentId": "cbc1104d-bd88-4faa-b472-27adbc16150b"
+    },
+    {
+      "type": "Request",
+      "method": {
+        "requestBody": true,
+        "link": "http://tools.ietf.org/html/rfc7231#section-4.3.5",
+        "name": "DELETE"
+      },
+      "body": {
+        "formBody": {
+          "overrideContentType": true,
+          "encoding": "application/x-www-form-urlencoded"
+        },
+        "bodyType": "Text",
+        "autoSetLength": true
+      },
+      "headersType": "Form",
+      "uri": {
+        "query": {
+          "delimiter": "&",
+          "items": []
+        },
+        "scheme": {
+          "secure": true,
+          "name": "https",
+          "version": "V11"
+        },
+        "host": "qswdonotremove.apispark.net",
+        "path": "/v1/companies/${\"test-QA132\".\"Quickstart\".\"post_qsw\".\"response\".\"body\".\"id\"}"
+      },
+      "id": "0378a746-cdb8-4f45-a1d8-b72390fb9fff",
+      "lastModified": "2017-08-08T16:36:09.021+02:00",
+      "name": "delete_company",
+      "headers": [
+        {
+          "enabled": true,
+          "name": "Authorization",
+          "value": "${\"test-QA132\".\"Quickstart\".\"post_qsw\".\"request\".\"headers\".\"authorization\"}"
+        },
+        {
+          "enabled": true,
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "assertions": [
+        {
+          "comparison": "Equals",
+          "subject": "ResponseStatus",
+          "path": "code",
+          "value": "204"
+        },
+        {
+          "comparison": "Equals",
+          "subject": "ResponseBody",
+          "path": "length",
+          "value": "0"
+        }
+      ],
+      "metaInfo": {
+        "ownerId": "auth0|5989bd72a8c3ee36d7da28e8"
+      },
+      "parentId": "cbc1104d-bd88-4faa-b472-27adbc16150b"
+    },
+    {
+      "type": "Request",
+      "method": {
+        "link": "http://tools.ietf.org/html/rfc7231#section-4.3.1",
+        "name": "GET"
+      },
+      "body": {
+        "formBody": {
+          "overrideContentType": true,
+          "encoding": "application/x-www-form-urlencoded"
+        },
+        "bodyType": "Text",
+        "autoSetLength": true
+      },
+      "headersType": "Form",
+      "uri": {
+        "query": {
+          "delimiter": "&",
+          "items": []
+        },
+        "scheme": {
+          "secure": true,
+          "name": "https",
+          "version": "V11"
+        },
+        "host": "qswdonotremove.apispark.net",
+        "path": "/v1/companies/${\"test-QA132\".\"Quickstart\".\"post_qsw\".\"response\".\"body\".\"id\"}"
+      },
+      "id": "87323ed9-8894-41d1-89e4-2eae89fe5c28",
+      "lastModified": "2017-08-08T16:37:03.151+02:00",
+      "name": "get_deleted_company",
+      "headers": [
+        {
+          "enabled": true,
+          "name": "Authorization",
+          "value": "${\"test-QA132\".\"Quickstart\".\"post_qsw\".\"request\".\"headers\".\"authorization\"}"
+        }
+      ],
+      "assertions": [
+        {
+          "comparison": "Equals",
+          "subject": "ResponseStatus",
+          "path": "code",
+          "value": "404"
+        }
+      ],
+      "metaInfo": {
+        "ownerId": "auth0|5989bd72a8c3ee36d7da28e8"
+      },
+      "parentId": "cbc1104d-bd88-4faa-b472-27adbc16150b"
+    },
+    {
+      "type": "Context",
+      "id": "b427172c-0070-468a-8e13-d2cf2f5e4bfd",
+      "lastModified": "2017-08-08T15:18:02.290+02:00",
+      "name": "test",
+      "variables": [
+        {
+          "enabled": true,
+          "name": "prop1",
+          "value": "toto"
+        }
+      ]
+    }
+  ]
+}
