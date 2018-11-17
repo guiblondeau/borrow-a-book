@@ -1,37 +1,38 @@
 {
   "openapi" : "3.0.1",
   "info" : {
-    "title" : "Contacts API",
-    "description" : "An API for keeping track of your contacts and the companies they work for. \n",
+    "title" : "Tasks API",
+    "description" : "An API for managing a list of tasks that need to be done. ",
+    "termsOfService" : "",
     "contact" : { },
-    "version" : "1.2.0"
+    "version" : "1.1.0"
   },
   "servers" : [ {
-    "url" : "https://er98c36.us.api-mocks.com",
+    "url" : "https://bockmn.eu.api-mocks.com",
     "description" : "This is your API mock endpoint. When called, it will simulate the behavior of your API."
   } ],
   "paths" : {
-    "/companies/" : {
+    "/tasks/" : {
       "get" : {
-        "tags" : [ "Companies" ],
-        "summary" : "Load the list of Companies",
-        "description" : "Loads a list of Company",
+        "summary" : "Load the list of Tasks",
         "parameters" : [ {
-          "name" : "name",
+          "name" : "$size",
           "in" : "query",
-          "description" : "Allows to filter the collections of result by the value of field name",
+          "description" : "Size of the page to retrieve.",
           "schema" : {
-            "type" : "string",
-            "description" : "Allows to filter the collections of result by the value of field name"
-          }
+            "type" : "integer",
+            "description" : "Size of the page to retrieve."
+          },
+          "example" : 10
         }, {
           "name" : "$page",
           "in" : "query",
           "description" : "Number of the page to retrieve.",
           "schema" : {
-            "type" : "number",
+            "type" : "integer",
             "description" : "Number of the page to retrieve."
-          }
+          },
+          "example" : 1
         }, {
           "name" : "$sort",
           "in" : "query",
@@ -39,243 +40,44 @@
           "schema" : {
             "type" : "string",
             "description" : "Order in which to retrieve the results. Multiple sort criteria can be passed. Example: sort=age ASC,height DESC"
-          }
+          },
+          "example" : "createdAt DESC"
         }, {
-          "name" : "$size",
+          "name" : "id",
           "in" : "query",
-          "description" : "Size of the page to retrieve.",
-          "schema" : {
-            "type" : "integer",
-            "format" : "int32",
-            "description" : "Size of the page to retrieve."
-          }
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "Status 200",
-            "headers" : {
-              "X-Page-Count" : {
-                "schema" : {
-                  "type" : "integer",
-                  "format" : "int32"
-                }
-              },
-              "X-Page-Number" : {
-                "schema" : {
-                  "type" : "integer",
-                  "format" : "int32"
-                }
-              },
-              "X-Page-Size" : {
-                "schema" : {
-                  "type" : "integer",
-                  "format" : "int32"
-                }
-              },
-              "X-Total-Count" : {
-                "schema" : {
-                  "type" : "integer",
-                  "format" : "int32"
-                }
-              }
-            },
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "type" : "array",
-                  "items" : {
-                    "$ref" : "#/components/schemas/Company"
-                  }
-                }
-              }
-            }
-          },
-          "400" : {
-            "description" : "Status 400",
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        }
-      },
-      "post" : {
-        "tags" : [ "Companies" ],
-        "summary" : "Create a new Company",
-        "description" : "Adds a Company",
-        "requestBody" : {
-          "content" : {
-            "application/json" : {
-              "schema" : {
-                "$ref" : "#/components/schemas/Company"
-              }
-            }
-          }
-        },
-        "responses" : {
-          "200" : {
-            "description" : "Status 200",
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/Company"
-                }
-              }
-            }
-          }
-        },
-        "security" : [ {
-          "HTTP_BASIC" : [ ]
-        } ]
-      }
-    },
-    "/companies/{companyid}" : {
-      "get" : {
-        "tags" : [ "Companies" ],
-        "summary" : "Load an individual Company",
-        "description" : "Loads a Company",
-        "responses" : {
-          "200" : {
-            "description" : "Status 200",
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/Company"
-                }
-              }
-            }
-          },
-          "400" : {
-            "description" : "Status 400",
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        }
-      },
-      "put" : {
-        "tags" : [ "Companies" ],
-        "summary" : "Update a Company",
-        "description" : "Stores a Company",
-        "requestBody" : {
-          "content" : {
-            "application/json" : {
-              "schema" : {
-                "$ref" : "#/components/schemas/Company"
-              }
-            }
-          }
-        },
-        "responses" : {
-          "200" : {
-            "description" : "Status 200",
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/Company"
-                }
-              }
-            }
-          }
-        },
-        "security" : [ {
-          "HTTP_BASIC" : [ ]
-        } ]
-      },
-      "delete" : {
-        "tags" : [ "Companies" ],
-        "summary" : "Delete a Company",
-        "description" : "Deletes a Company",
-        "responses" : {
-          "200" : {
-            "description" : "Status 200"
-          }
-        },
-        "security" : [ {
-          "HTTP_BASIC" : [ ]
-        } ]
-      },
-      "parameters" : [ {
-        "name" : "companyid",
-        "in" : "path",
-        "required" : true,
-        "description" : "Identifier of the Company",
-        "schema" : {
-          "type" : "string",
-          "description" : "Identifier of the Company"
-        }
-      } ]
-    },
-    "/contacts/" : {
-      "get" : {
-        "tags" : [ "Contacts" ],
-        "summary" : "Get the list of Contacts",
-        "description" : "Loads a list of Contact",
-        "parameters" : [ {
-          "name" : "company",
-          "in" : "query",
-          "description" : "Allows to filter the collections of result by the value of field company",
+          "description" : "Allows to filter the collection of results by the value of field `id`",
           "schema" : {
             "type" : "string",
-            "description" : "Allows to filter the collections of result by the value of field company"
-          }
+            "description" : "Allows to filter the collection of results by the value of field `id`"
+          },
+          "example" : "47ee3550-b619-11e6-8408-0bdb025a7cfa"
         }, {
-          "name" : "active",
+          "name" : "name",
           "in" : "query",
-          "description" : "Allows to filter the collections of result by the value of field active",
+          "description" : "Allows to filter the collection of results by the value of field `name`",
+          "schema" : {
+            "type" : "string",
+            "description" : "Allows to filter the collection of results by the value of field `name`"
+          },
+          "example" : "Learn about hypermedia APIs"
+        }, {
+          "name" : "createdAt",
+          "in" : "query",
+          "description" : "Allows to filter the collection of results by the value of field `createdAt`",
+          "schema" : {
+            "type" : "string",
+            "description" : "Allows to filter the collection of results by the value of field `createdAt`"
+          },
+          "example" : "2016.07.03"
+        }, {
+          "name" : "completed",
+          "in" : "query",
+          "description" : "Allows to filter the collection of results by the value of field `completed`",
           "schema" : {
             "type" : "boolean",
-            "description" : "Allows to filter the collections of result by the value of field active"
-          }
-        }, {
-          "name" : "$page",
-          "in" : "query",
-          "description" : "Number of the page to retrieve.",
-          "schema" : {
-            "type" : "integer",
-            "format" : "int32",
-            "description" : "Number of the page to retrieve."
-          }
-        }, {
-          "name" : "lastName",
-          "in" : "query",
-          "description" : "Allows to filter the collections of result by the value of field lastName",
-          "schema" : {
-            "type" : "string",
-            "description" : "Allows to filter the collections of result by the value of field lastName"
-          }
-        }, {
-          "name" : "firstName",
-          "in" : "query",
-          "description" : "Allows to filter the collections of result by the value of field firstName",
-          "schema" : {
-            "type" : "string",
-            "description" : "Allows to filter the collections of result by the value of field firstName"
-          }
-        }, {
-          "name" : "$sort",
-          "in" : "query",
-          "description" : "Order in which to retrieve the results. Multiple sort criteria can be passed.",
-          "schema" : {
-            "type" : "string",
-            "description" : "Order in which to retrieve the results. Multiple sort criteria can be passed."
-          }
-        }, {
-          "name" : "$size",
-          "in" : "query",
-          "description" : "Size of the page to retrieve.",
-          "schema" : {
-            "type" : "integer",
-            "format" : "int32",
-            "description" : "Size of the page to retrieve."
-          }
+            "description" : "Allows to filter the collection of results by the value of field `completed`"
+          },
+          "example" : true
         } ],
         "responses" : {
           "200" : {
@@ -283,27 +85,27 @@
             "headers" : {
               "X-Page-Count" : {
                 "schema" : {
-                  "type" : "integer",
-                  "format" : "int32"
-                }
+                  "type" : "integer"
+                },
+                "example" : 1
               },
               "X-Page-Number" : {
                 "schema" : {
-                  "type" : "integer",
-                  "format" : "int32"
-                }
+                  "type" : "integer"
+                },
+                "example" : 1
               },
               "X-Page-Size" : {
                 "schema" : {
-                  "type" : "integer",
-                  "format" : "int32"
-                }
+                  "type" : "integer"
+                },
+                "example" : 25
               },
               "X-Total-Count" : {
                 "schema" : {
-                  "type" : "integer",
-                  "format" : "int32"
-                }
+                  "type" : "integer"
+                },
+                "example" : 2
               }
             },
             "content" : {
@@ -311,9 +113,10 @@
                 "schema" : {
                   "type" : "array",
                   "items" : {
-                    "$ref" : "#/components/schemas/Contact"
+                    "$ref" : "#/components/schemas/Task"
                   }
-                }
+                },
+                "example" : "[{\n  \"id\": \"47ee3550-b619-11e6-8408-0bdb025a7cfa\",\n  \"name\": \"Feed the fish\",\n  \"completed\": false,\n  \"createdAt\": \"2016.07.03\"\n}]"
               }
             }
           },
@@ -330,15 +133,14 @@
         }
       },
       "post" : {
-        "tags" : [ "Contacts" ],
-        "summary" : "Create a Contact",
-        "description" : "Adds a Contact",
+        "summary" : "Create a new Task",
         "requestBody" : {
           "content" : {
             "application/json" : {
               "schema" : {
-                "$ref" : "#/components/schemas/Contact"
-              }
+                "$ref" : "#/components/schemas/Task"
+              },
+              "example" : "{\n  \"name\": \"Feed the fish\",\n  \"completed\": false,\n  \"createdAt\": \"2016.07.03\"\n}"
             }
           }
         },
@@ -348,8 +150,9 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/Contact"
-                }
+                  "$ref" : "#/components/schemas/Task"
+                },
+                "example" : "{\n  \"id\": \"47ee3550-b619-11e6-8408-0bdb025a7cfa\",\n  \"name\": \"Feed the fish\",\n  \"completed\": false,\n  \"createdAt\": \"2016.07.03\"\n}"
               }
             }
           }
@@ -359,19 +162,18 @@
         } ]
       }
     },
-    "/contacts/{contactid}" : {
+    "/tasks/{taskid}" : {
       "get" : {
-        "tags" : [ "Contacts" ],
-        "summary" : "Load an individual Contact",
-        "description" : "Loads a Contact",
+        "summary" : "Load a specific Task",
         "responses" : {
           "200" : {
             "description" : "Status 200",
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/Contact"
-                }
+                  "$ref" : "#/components/schemas/Task"
+                },
+                "example" : "{\n  \"id\": \"47ee3550-b619-11e6-8408-0bdb025a7cfa\",\n  \"name\": \"Feed the fish\",\n  \"completed\": false,\n  \"createdAt\": \"2016.07.03\"\n}"
               }
             }
           },
@@ -388,15 +190,14 @@
         }
       },
       "put" : {
-        "tags" : [ "Contacts" ],
-        "summary" : "Update a Contact",
-        "description" : "Stores a Contact",
+        "summary" : "Update a Task",
         "requestBody" : {
           "content" : {
             "application/json" : {
               "schema" : {
-                "$ref" : "#/components/schemas/Contact"
-              }
+                "$ref" : "#/components/schemas/Task"
+              },
+              "example" : "{\n  \"name\": \"Feed the fish\",\n  \"completed\": false,\n  \"createdAt\": \"2016.07.03\"\n}"
             }
           }
         },
@@ -406,8 +207,9 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/Contact"
-                }
+                  "$ref" : "#/components/schemas/Task"
+                },
+                "example" : "{\n  \"id\": \"47ee3550-b619-11e6-8408-0bdb025a7cfa\",\n  \"name\": \"Feed the fish\",\n  \"completed\": false,\n  \"createdAt\": \"2016.07.03\"\n}"
               }
             }
           }
@@ -417,9 +219,7 @@
         } ]
       },
       "delete" : {
-        "tags" : [ "Contacts" ],
-        "summary" : "Delete a Contact",
-        "description" : "Deletes a Contact",
+        "summary" : "Delete a Task",
         "responses" : {
           "200" : {
             "description" : "Status 200"
@@ -430,99 +230,43 @@
         } ]
       },
       "parameters" : [ {
-        "name" : "contactid",
+        "name" : "taskid",
         "in" : "path",
         "required" : true,
-        "description" : "Identifier of the Contact",
+        "description" : "Identifier of the Task",
         "schema" : {
           "type" : "string",
-          "description" : "Identifier of the Contact"
-        }
+          "description" : "Identifier of the Task"
+        },
+        "example" : "47ee3550-b619-11e6-8408-0bdb025a7cfa"
       } ]
     }
   },
   "components" : {
     "schemas" : {
-      "Company" : {
+      "Task" : {
         "type" : "object",
-        "required" : [ "address", "id", "name" ],
-        "description" : "A representation of a Company.",
-        "properties" : {
-          "id" : {
-            "type" : "string",
-            "description" : "Auto-generated primary key field"
-          },
-          "name" : {
-            "type" : "string"
-          },
-          "tags" : {
-            "type" : "array",
-            "items" : {
-              "type" : "string",
-              "pattern" : "[a-zA-Z]+"
-            },
-            "example" : "[\"brewery\", \"beer\", \"ale\"]"
-          },
-          "address" : {
-            "type" : "object",
-            "required" : [ "city", "street", "zipcode" ],
-            "properties" : {
-              "street" : {
-                "type" : "string"
-              },
-              "city" : {
-                "type" : "string"
-              },
-              "zipcode" : {
-                "type" : "string",
-                "pattern" : "[0-9]*"
-              }
-            }
-          }
-        },
-        "example" : "{\n  \"id\": \"0e8cedd0-ad98-11e6-bf2e-47644ada7c0f\",\n  \"name\": \"George Street Brewery\",\n  \"address\":{\n    \"street\": \"2 place de la Defense\",\n    \"zipcode\": \"92053\",\n    \"city\": \"Paris\"\n  },\n  \"tags\":[\n    \"brewery\",\n    \"beer\",\n    \"ale\"\n  ]\n}"
-      },
-      "Contact" : {
-        "type" : "object",
-        "required" : [ "firstName", "id", "lastName" ],
-        "description" : "A representation of a Contact.",
+        "required" : [ "completed", "id", "name" ],
+        "description" : "An object that represents a Task.",
         "properties" : {
           "id" : {
             "type" : "string",
             "description" : "Auto-generated primary key field",
-            "example" : "0e8ffb10-ad98-11e6-bf2e-47644ada7c0f"
+            "example" : "3fa2eb40-b61c-11e6-9de0-fdbe71bceebb"
           },
-          "firstName" : {
+          "name" : {
             "type" : "string",
-            "example" : "Kurt"
+            "example" : "Figure out how to colonize Mars"
           },
-          "lastName" : {
+          "completed" : {
+            "type" : "boolean"
+          },
+          "createdAt" : {
             "type" : "string",
-            "example" : "Williams"
-          },
-          "birthday" : {
-            "type" : "integer",
-            "format" : "int64",
-            "description" : "Birthday as unix timestamp (in ms)",
-            "example" : 173664000000
-          },
-          "active" : {
-            "type" : "boolean",
-            "default" : true
-          },
-          "rank" : {
-            "type" : "integer",
-            "format" : "int32",
-            "minimum" : 1,
-            "example" : 1
-          },
-          "company" : {
-            "type" : "string",
-            "description" : "This property is a reference to a Company",
-            "example" : "0e8c9fb0-ad98-11e6-bf2e-47644ada7c0f"
+            "example" : "2016.10.06"
           }
         },
-        "example" : "{\n  \"id\": \"0e8dd830-ad98-11e6-bf2e-47644ada7c0f\",\n  \"firstName\": \"John\",\n  \"lastName\": \"Smith\",\n  \"birthday\": 152755200000,\n  \"active\": true,\n  \"rank\": 1,\n  \"company\": \"0e8cedd0-ad98-11e6-bf2e-47644ada7c0f\"\n}"
+        "example" : "{\n  \"id\": \"47ee3550-b619-11e6-8408-0bdb025a7cfa\",\n  \"name\": \"Feed the fish\",\n  \"completed\": false,\n  \"createdAt\": \"2016.07.03\"\n}"
       },
       "Error" : {
         "type" : "object",
@@ -531,7 +275,6 @@
         "properties" : {
           "code" : {
             "type" : "integer",
-            "format" : "int32",
             "minimum" : 400,
             "maximum" : 599
           },
