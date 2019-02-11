@@ -1,0 +1,17 @@
+---
+openapi: "3.0.1"
+info:
+  title: "securitySchemes"
+  description: "No description"
+  contact: {}
+  version: "1.0.0"
+paths:
+  /toto:
+    get:
+      responses:
+        200:
+          description: "Status 200"
+          content:
+            '*/*':
+              schema:
+                type: "object"
